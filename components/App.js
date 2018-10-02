@@ -1,14 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { createMuiTheme } from "@material-ui/core/styles";
 import { MuiThemeProvider } from "@material-ui/core/styles/index";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { InputBase, IconButton } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import { IconButton } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import Search from "@material-ui/icons/Search";
+import Menu from "./Menu";
+import SearchTextField from "./SearchTextField";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#a1c9c5"
+    },
+    secondary: {
+      main: "#c2185b"
+    }
+  }
+});
 
 const styles = {
   root: {
@@ -23,72 +35,39 @@ const styles = {
   },
   palette: {
     primary: {
-      main: "#fff"
+      main: "#a1c9c5"
+    },
+    secondary: {
+      main: "#c2185b"
     }
-  },
-  searchExtend: {
-    transition: "width 0.8s cubic-bezier(0.000, 0.795, 0.000, 1.000)"
-  },
-  open: {
-    width: 180,
-    transition: "width 0.8s cubic-bezier(0.000, 0.795, 0.000, 1.000)"
-  },
-  closed: {
-    width: 0,
-    transition: "width 0.8s cubic-bezier(0.000, 0.795, 0.000, 1.000)"
   }
 };
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isOpen: false };
-  }
-
-  handSearch = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  };
-
   render() {
     const { classes } = this.props;
 
-    let textStyle = this.state.isOpen ? classes.open : classes.closed;
-
     return (
-      <MuiThemeProvider className={classes.palette}>
-        <AppBar position="absolute">
-          <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="title"
-              color="inherit"
-              className={classes.grow}
-            >
-              AppBar
-            </Typography>
-            <div className={classes.searchExtend}>
-              <IconButton color="inherit" onClick={this.handSearch}>
-                <Search />
+      <div className={classes.root}>
+        <MuiThemeProvider theme={theme}>
+          <AppBar position="absolute">
+            <Toolbar>
+              <Menu />
+              <Typography
+                variant="title"
+                color="inherit"
+                className={classes.grow}
+              >
+                Teste
+              </Typography>
+              <SearchTextField />
+              <IconButton aria-haspopup="true" color="inherit">
+                <AccountCircle />
               </IconButton>
-              <InputBase
-                name="search"
-                placeholder="Search"
-                autoComplete="false"
-                className={textStyle}
-              />
-            </div>
-            <IconButton aria-haspopup="true" color="inherit">
-              <AccountCircle />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-      </MuiThemeProvider>
+            </Toolbar>
+          </AppBar>
+        </MuiThemeProvider>
+      </div>
     );
   }
 }
