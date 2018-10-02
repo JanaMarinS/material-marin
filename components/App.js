@@ -19,7 +19,7 @@ class App extends Component {
           <AppBar position="static">
             <Toolbar>
               <Typography type="title" color="inherit">
-                My Awesome React App
+                Janaína Marin
               </Typography>
             </Toolbar>
           </AppBar>
