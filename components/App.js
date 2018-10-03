@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { IconButton } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Menu from "./Menu";
+import Main from "./Main";
 import SearchTextField from "./SearchTextField";
 
 const theme = createMuiTheme({
@@ -40,6 +41,11 @@ const styles = {
     secondary: {
       main: "#c2185b"
     }
+  },
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3
   }
 };
 
@@ -66,6 +72,10 @@ class App extends React.Component {
               </IconButton>
             </Toolbar>
           </AppBar>
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <Main />
+          </main>
         </MuiThemeProvider>
       </div>
     );

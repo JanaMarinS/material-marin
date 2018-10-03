@@ -22,15 +22,12 @@ const style = {
 
 class Menu extends Component {
   state = {
-    top: false,
-    left: false,
-    bottom: false,
-    right: false
+    left: false
   };
 
-  toggleDrawer = (side, open) => () => {
+  toggleDrawer = open => () => {
     this.setState({
-      [side]: open
+      left: open
     });
   };
 
@@ -43,19 +40,16 @@ class Menu extends Component {
           color="inherit"
           aria-label="Menu"
           className={classes.menuButton}
-          onClick={this.toggleDrawer("left", true)}
+          onClick={this.toggleDrawer(true)}
         >
-          <MenuIcon onClick={this.toggleDrawer("left", true)} />
+          <MenuIcon onClick={this.toggleDrawer(true)} />
         </IconButton>
-        <Drawer
-          open={this.state.left}
-          onClose={this.toggleDrawer("left", false)}
-        >
+        <Drawer open={this.state.left} onClose={this.toggleDrawer(false)}>
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer("left", false)}
-            onKeyDown={this.toggleDrawer("left", false)}
+            onClick={this.toggleDrawer(false)}
+            onKeyDown={this.toggleDrawer(false)}
           >
             <div className={classes.list}>
               <List>{mailFolderListItems}</List>
