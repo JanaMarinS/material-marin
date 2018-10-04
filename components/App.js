@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { IconButton } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Menu from "./Menu";
-import Main from "./Main";
+import Form from "./Form";
 import SearchTextField from "./SearchTextField";
 
 const theme = createMuiTheme({
@@ -74,7 +74,7 @@ class App extends React.Component {
           </AppBar>
           <main className={classes.content}>
             <div className={classes.toolbar} />
-            <Main />
+            <Form />
           </main>
         </MuiThemeProvider>
       </div>
