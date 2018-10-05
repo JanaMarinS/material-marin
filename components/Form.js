@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Typography, Paper, TextField, Button, Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
+import SuccessDialog from "./SuccessDialog";
 
 const styles = theme => ({
   root: {
@@ -15,7 +16,6 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit
-    //width: 325
   },
   button: {
     marginTop: 19,
@@ -24,6 +24,18 @@ const styles = theme => ({
 });
 
 class Form extends Component {
+  state = {
+    open: false
+  };
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handleSuccessOpen = () => {
+    this.setState({
+      open: true
+    });
+  };
   render() {
     const { classes } = this.props;
 
@@ -33,13 +45,7 @@ class Form extends Component {
           <Typography variant="headline" component="h3">
             Pessoa Física
           </Typography>
-          <Grid
-            container
-            direction="row"
-            justify="left"
-            alignItems="left"
-            spacing={24}
-          >
+          <Grid container direction="row" justify="flex-start" spacing={24}>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
@@ -54,42 +60,50 @@ class Form extends Component {
               <TextField
                 fullWidth
                 id="standard-dense"
-                label="Nome Completo"
+                label="Endereço"
                 className={classNames(classes.textField, classes.dense)}
                 margin="dense"
               />
             </Grid>
-            <TextField
-              id="standard-dense"
-              label="E-mail"
-              className={classNames(classes.textField, classes.dense)}
-              margin="dense"
-            />
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                id="standard-dense"
+                label="E-mail"
+                className={classNames(classes.textField, classes.dense)}
+                margin="dense"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                id="standard-dense"
+                label="Cidade"
+                className={classNames(classes.textField, classes.dense)}
+                margin="dense"
+              />
+            </Grid>
           </Grid>
 
-          <TextField
-            id="standard-dense"
-            label="Endereço"
-            className={classNames(classes.textField, classes.dense)}
-            margin="dense"
+          <Grid container direction="row" justify="flex-end" spacing={24}>
+            <Grid item>
+              <Button
+                raised
+                className={classes.button}
+                elevation={2}
+                justify="flex-end"
+                onClick={this.handleSuccessOpen}
+              >
+                Salvar
+              </Button>
+            </Grid>
+          </Grid>
+          <SuccessDialog
+            open={this.state.open}
+            onClose={this.handleSuccessClose}
           />
-          <TextField
-            id="standard-dense"
-            label="Cidade"
-            className={classNames(classes.textField, classes.dense)}
-            margin="dense"
-          />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "flex-end"
-            }}
-          >
-            <Button raised className={classes.button} elevation={2}>
-              Salvar
-            </Button>
-          </div>
         </Paper>
       </div>
     );
