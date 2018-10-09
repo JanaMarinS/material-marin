@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Typography, Paper, TextField, Button, Grid } from "@material-ui/core";
+import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import SuccessDialog from "./SuccessDialog";
@@ -22,6 +23,13 @@ const styles = theme => ({
     flexGrow: 1
   }
 });
+
+SuccessDialog.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onClose: PropTypes.func
+};
+
+const SuccessDialogShow = withStyles(styles)(SuccessDialog);
 
 class Form extends Component {
   state = {
@@ -100,9 +108,9 @@ class Form extends Component {
               </Button>
             </Grid>
           </Grid>
-          <SuccessDialog
+          <SuccessDialogShow
             open={this.state.open}
-            onClose={this.handleSuccessClose}
+            onClose={this.handleClose}
           />
         </Paper>
       </div>
