@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dialog, DialogTitle } from "@material-ui/core";
+import { Dialog } from "@material-ui/core";
 import Done from "@material-ui/icons/Done";
 import { withStyles } from "@material-ui/core/styles";
 
